@@ -1,0 +1,36 @@
+name: CI – Train Model
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  train:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: auto_mpg_env
+          environment-file: MLProject/conda.yaml
+          auto-activate-base: false
+
+      - name: Install MLflow CLI
+        run: pip install mlflow
+
+      - name: Run MLflow Project
+        run: |
+          mlflow run MLProject \
+            -P data_path=namadataset_preprocessing/automobile_preprocessed.csv \
+            -P n_estimators=100 \
+            -P max_depth=10
+
+      - name: Archive MLflow runs
+        uses: actions/upload-artifact@v3
+        with:
+          name: mlflow-runs
+          path: mlruns/
