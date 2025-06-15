@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Pongo/Documents/Coding/Dicoding/ML/MSML/Workflow-CI/mlproject/mlruns/0/d6a50ac36d5846c4ac5e8a6a66f37520/artifacts
+end_time: 1750014936159
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d6a50ac36d5846c4ac5e8a6a66f37520
+run_name: colorful-stoat-618
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750014933291
+status: 4
+tags: []
+user_id: Pongo

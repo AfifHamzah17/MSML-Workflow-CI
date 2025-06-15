@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Pongo/Documents/Coding/Dicoding/ML/MSML/Workflow-CI/mlproject/mlruns/0/33b2fd1167904b3ab5cf52eb571e4ab9/artifacts
+end_time: 1750014949650
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 33b2fd1167904b3ab5cf52eb571e4ab9
+run_name: charming-cat-63
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750014947004
+status: 4
+tags: []
+user_id: Pongo

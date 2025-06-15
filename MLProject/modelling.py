@@ -1,4 +1,3 @@
-import os
 import argparse
 import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
@@ -14,25 +13,20 @@ def train_and_log(data_path, n_estimators, max_depth):
     y = df['mpg']
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-    # Konfigurasi tracking lokal
-    os.makedirs('mlruns', exist_ok=True)
-    mlflow.set_tracking_uri(f"file://{os.path.abspath('mlruns')}")
-    mlflow.set_experiment("auto_mpg_ci")
+    # ⚠️ Jangan panggil set_experiment() atau start_run() secara manual di sini
 
-    # Sinkron dengan run_id dari CLI
-    with mlflow.start_run(run_id=os.environ.get("MLFLOW_RUN_ID")):
-        model = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, random_state=42)
-        model.fit(X_train, y_train)
-        test_score = model.score(X_test, y_test)
+    model = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, random_state=42)
+    model.fit(X_train, y_train)
+    test_score = model.score(X_test, y_test)
 
-        # Logging
-        mlflow.log_params({
-            "n_estimators": n_estimators,
-            "max_depth": max_depth
-        })
-        mlflow.log_metric("test_r2", test_score)
+    mlflow.log_params({
+        "n_estimators": n_estimators,
+        "max_depth": max_depth
+    })
+    mlflow.log_metric("test_r2", test_score)
 
-        print(f"Test R²: {test_score:.4f}")
+    print(f"✅ Test R²: {test_score:.4f}")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

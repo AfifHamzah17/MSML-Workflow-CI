@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Pongo/Documents/Coding/Dicoding/ML/MSML/Workflow-CI/mlproject/mlruns/0/f5e1f3f7b8714b7597a34a5e416e3903/artifacts
+end_time: 1750014982348
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f5e1f3f7b8714b7597a34a5e416e3903
+run_name: salty-snipe-537
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750014979475
+status: 4
+tags: []
+user_id: Pongo

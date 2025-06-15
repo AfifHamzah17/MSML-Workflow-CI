@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Pongo/Documents/Coding/Dicoding/ML/MSML/Workflow-CI/mlproject/mlruns/0/80ea7756ecbd4465a020528c08d411da/artifacts
+end_time: 1750014787131
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 80ea7756ecbd4465a020528c08d411da
+run_name: capable-sow-182
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750014783376
+status: 4
+tags: []
+user_id: Pongo

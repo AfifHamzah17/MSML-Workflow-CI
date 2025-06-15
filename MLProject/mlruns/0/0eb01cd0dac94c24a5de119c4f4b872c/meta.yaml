@@ -1,0 +1,14 @@
+artifact_uri: file:///C:/Users/Pongo/Documents/Coding/Dicoding/ML/MSML/Workflow-CI/mlproject/mlruns/0/0eb01cd0dac94c24a5de119c4f4b872c/artifacts
+end_time: 1750014853681
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0eb01cd0dac94c24a5de119c4f4b872c
+run_name: chill-shad-90
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1750014850994
+status: 4
+tags: []
+user_id: Pongo

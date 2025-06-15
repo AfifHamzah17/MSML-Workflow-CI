@@ -1,3 +1,46 @@
+# name: CI – Train Model
+
+# on:
+#   push:
+#     branches: [ main ]
+#   workflow_dispatch:
+
+# jobs:
+#   train:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Checkout repo
+#         uses: actions/checkout@v4
+
+#       - name: Install Conda & MLflow
+#         run: |
+#           sudo apt update
+#           sudo apt install -y wget
+#           wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+#           bash miniconda.sh -b -p $HOME/miniconda
+#           echo "$HOME/miniconda/bin" >> $GITHUB_PATH
+#           source "$HOME/miniconda/etc/profile.d/conda.sh"
+#           conda init bash
+#           conda --version
+#           conda install -y -c conda-forge mlflow
+
+#       - name: Clean environment variables (optional fix)
+#         run: unset MLFLOW_RUN_ID
+
+#       - name: Run MLflow Project with Conda
+#         run: |
+#           mlflow run MLProject \
+#             -P data_path=namadataset_preprocessing/automobile_preprocessed.csv \
+#             -P n_estimators=100 \
+#             -P max_depth=10
+
+#       - name: Archive MLflow runs
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: mlflow-runs
+#           path: mlruns/
+
 name: CI – Train Model
 
 on:
@@ -22,21 +65,23 @@ jobs:
           echo "$HOME/miniconda/bin" >> $GITHUB_PATH
           source "$HOME/miniconda/etc/profile.d/conda.sh"
           conda init bash
-          conda --version
-          conda install -y -c conda-forge mlflow
+          conda create -n mpgenv python=3.10 -y
+          conda activate mpgenv
+          conda install -y -c conda-forge mlflow scikit-learn pandas
 
       - name: Clean environment variables (optional fix)
         run: unset MLFLOW_RUN_ID
 
-      - name: Run MLflow Project with Conda
+      - name: Run MLflow Project
         run: |
-          mlflow run MLProject \
+          mlflow run . \
             -P data_path=namadataset_preprocessing/automobile_preprocessed.csv \
             -P n_estimators=100 \
             -P max_depth=10
 
       - name: Archive MLflow runs
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: mlflow-runs
-          path: mlruns/
+          path: ./mlruns/
