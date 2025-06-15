@@ -25,6 +25,9 @@ jobs:
           conda --version
           conda install -y -c conda-forge mlflow
 
+      - name: Clean environment variables (optional fix)
+        run: unset MLFLOW_RUN_ID
+
       - name: Run MLflow Project with Conda
         run: |
           mlflow run MLProject \
