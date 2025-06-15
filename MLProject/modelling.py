@@ -19,13 +19,13 @@ def train_and_log(data_path, n_estimators, max_depth):
     mlflow.set_tracking_uri(f"file://{os.path.abspath('mlruns')}")
     mlflow.set_experiment("auto_mpg_ci")
 
-    # Mulai run baru dengan nested=True untuk hindari reuse run ID
-    with mlflow.start_run(nested=True):
+    # Sinkron dengan run_id dari CLI
+    with mlflow.start_run(run_id=os.environ.get("MLFLOW_RUN_ID")):
         model = RandomForestRegressor(n_estimators=n_estimators, max_depth=max_depth, random_state=42)
         model.fit(X_train, y_train)
         test_score = model.score(X_test, y_test)
 
-        # Logging manual
+        # Logging
         mlflow.log_params({
             "n_estimators": n_estimators,
             "max_depth": max_depth
